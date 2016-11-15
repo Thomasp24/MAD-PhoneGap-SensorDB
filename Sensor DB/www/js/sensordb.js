@@ -11,6 +11,9 @@ var app = angular.module("sensordb", ["ngRoute"]);
             .when("/overview", {
                 templateUrl: "views/overview.html"
             })
+            .when("/decibelmeter", {
+                templateUrl: "views/decibelmeter.html"
+            })
             .when("/fingerprint", {
                 templateUrl: "views/fingerprint.html"
             })
