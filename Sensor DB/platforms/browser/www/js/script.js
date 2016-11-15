@@ -14,7 +14,7 @@ var app = {
         angular.element(document).ready(function() {
             angular.bootstrap(document, ['ngView']);
         });
-    }   
+    }
 };
 
 
