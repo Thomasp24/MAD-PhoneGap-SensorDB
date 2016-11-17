@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "nl.han.ica.mad.sensordb"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "nl.han.ica.mad.sensordb"
         }
     },
     "dependent_plugins": {

@@ -21,6 +21,8 @@ var app = {
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     console.log(navigator.camera);
+    console.log(navigator.compass);
+    //compass.init();
     //openCamera(null);
 }
 

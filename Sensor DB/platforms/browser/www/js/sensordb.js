@@ -2,14 +2,18 @@
  * Created by thomaspeters on 14-11-16.
  */
 
-var app = angular.module("sensordb", ["ngRoute"]);
+var app = angular.module("sensordb", ["ngRoute", "overview"]);
     app.config(function($routeProvider) {
         $routeProvider
             .when("/", {
                 templateUrl: "views/index.html"
             })
             .when("/overview", {
-                templateUrl: "views/overview.html"
+                templateUrl: "views/overview.html",
+                controller: "overview"
+            })
+            .when("/decibelmeter", {
+                templateUrl: "views/decibelmeter.html"
             })
             .when("/fingerprint", {
                 templateUrl: "views/fingerprint.html"
