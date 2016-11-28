@@ -3,6 +3,8 @@
  */
 var app = {
 
+    client_id: "id01",
+    client_secret: "secret01",
     initialize: function() {
         this.bindEvents();
     },
@@ -14,12 +16,38 @@ var app = {
         angular.element(document).ready(function() {
             angular.bootstrap(document, ['ngView']);
         });
+        FingerprintAuth.isAvailable(function(result) {
+            if (result.isAvailable) {
+                if(result.hasEnrolledFingerprints){
+                    FingerprintAuth.show({
+                        clientId: client_id,
+                        clientSecret: client_secret
+                    }, function (result) {
+                        if (result.withFingerprint) {
+                            alert("Successfully authenticated using a fingerprint");
+                        } else if (result.withPassword) {
+                            alert("Authenticated with backup password");
+                        }
+                    }, function(error) {
+                        console.log(error); // "Fingerprint authentication not available"
+                    });
+                }else{
+                    alert("Fingerprint auth available, but no fingerprint registered on the device");
+                }
+            }
+        }, function(message) {
+            alert("Cannot detect fingerprint device : "+ message);
+        });
+
     }
 };
 
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
+
+
+
     console.log(navigator.camera);
     //openCamera(null);
 }
