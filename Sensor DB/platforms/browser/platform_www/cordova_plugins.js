@@ -59,6 +59,22 @@ module.exports = [
         "id": "cordova-plugin-device-orientation.CompassProxy",
         "pluginId": "cordova-plugin-device-orientation",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-gyroscope/www/Orientation.js",
+        "id": "cordova-plugin-gyroscope.Orientation",
+        "pluginId": "cordova-plugin-gyroscope",
+        "clobbers": [
+            "Orientation"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-gyroscope/www/gyroscope.js",
+        "id": "cordova-plugin-gyroscope.gyroscope",
+        "pluginId": "cordova-plugin-gyroscope",
+        "clobbers": [
+            "navigator.gyroscope"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -66,7 +82,8 @@ module.exports.metadata =
 {
     "cordova-plugin-camera": "2.3.0",
     "cordova-plugin-compat": "1.1.0",
-    "cordova-plugin-device-orientation": "1.0.4"
+    "cordova-plugin-device-orientation": "1.0.4",
+    "cordova-plugin-gyroscope": "0.1.4"
 }
 // BOTTOM OF METADATA
 });
