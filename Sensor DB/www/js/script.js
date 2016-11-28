@@ -20,8 +20,8 @@ var app = {
             if (result.isAvailable) {
                 if(result.hasEnrolledFingerprints){
                     FingerprintAuth.show({
-                        clientId: client_id,
-                        clientSecret: client_secret
+                        clientId: app.client_id,
+                        clientSecret: app.client_secret
                     }, function (result) {
                         if (result.withFingerprint) {
                             alert("Successfully authenticated using a fingerprint");
