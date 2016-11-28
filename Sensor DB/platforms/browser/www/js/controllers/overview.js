@@ -32,10 +32,15 @@ angular.module("overview", [])
             this.compas = navigator.compass;
             this.compas.watchHeading(function(heading){ // successCallback
                     $scope.heading = "Compass Heading: " + heading.magneticHeading;
+                    var compassDisc = document.getElementById("compasImg");
+                    compassDisc.style.webkitTransform = "rotate("+ heading.magneticHeading*-1 +"deg)";
+                    compassDisc.style.MozTransform = "rotate("+ heading.magneticHeading*-1 +"deg)";
+                    compassDisc.style.transform = "rotate("+ heading.magneticHeading*-1 +"deg)";
+
                     $scope.$apply();
                 }, function(error){ // errorCallback
                     console.log('Could not retrieve compassHeading... #' + error.code);
-                }, {frequency: 500}
+                }, {frequency: 100}
             );
         }
 
