@@ -29,13 +29,22 @@ module.exports = [
         "id": "cordova-plugin-camera.CameraProxy",
         "pluginId": "cordova-plugin-camera",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-android-fingerprint-auth/www/FingerprintAuth.js",
+        "id": "cordova-plugin-android-fingerprint-auth.FingerprintAuth",
+        "pluginId": "cordova-plugin-android-fingerprint-auth",
+        "clobbers": [
+            "FingerprintAuth"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "cordova-plugin-camera": "2.3.0",
-    "cordova-plugin-compat": "1.1.0"
+    "cordova-plugin-compat": "1.1.0",
+    "cordova-plugin-android-fingerprint-auth": "0.3.3"
 }
 // BOTTOM OF METADATA
 });
