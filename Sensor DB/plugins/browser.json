@@ -10,15 +10,15 @@
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "nl.han.ica.mad.sensordb"
         },
-        "cordova-plugin-media-capture": {
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "nl.han.ica.mad.sensordb"
+        },
+        "cordova-plugin-gyroscope": {
             "PACKAGE_NAME": "nl.han.ica.mad.sensordb"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "nl.han.ica.mad.sensordb"
-        },
-        "cordova-plugin-file": {
             "PACKAGE_NAME": "nl.han.ica.mad.sensordb"
         }
     }
