@@ -20,8 +20,7 @@ var app = {
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-    console.log(navigator.camera);
-    //openCamera(null);
+
 }
 
 function setOptions(srcType) {

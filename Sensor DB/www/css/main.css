@@ -801,3 +801,7 @@ div.loader > i {
 div.loader > i > i {
     font-size: 150px;
 }
+
+#visualizer_wrapper{
+    text-align: center;
+}

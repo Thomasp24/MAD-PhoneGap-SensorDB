@@ -10,12 +10,15 @@
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "nl.han.ica.mad.sensordb"
         },
-        "cordova-plugin-android-fingerprint-auth": {
+        "cordova-plugin-media-capture": {
             "PACKAGE_NAME": "nl.han.ica.mad.sensordb"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
+            "PACKAGE_NAME": "nl.han.ica.mad.sensordb"
+        },
+        "cordova-plugin-file": {
             "PACKAGE_NAME": "nl.han.ica.mad.sensordb"
         }
     }
