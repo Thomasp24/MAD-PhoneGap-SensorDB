@@ -22,6 +22,15 @@ var app = {
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
+    var notificationOpenedCallback = function(jsonData) {
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+    };
+
+    window.plugins.OneSignal
+        .startInit("36c8b13a-afda-4b4a-8a29-eb7ebdf2152e", "665510758144")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
+
     FingerprintAuth.isAvailable(function(result) {
         if (result.isAvailable) {
             if(result.hasEnrolledFingerprints){
@@ -72,8 +81,23 @@ function openCamera(selection) {
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
 
         displayImage(imageUri);
-        // You may choose to copy the picture, save it somewhere, or upload.
-        //func(imageUri);
+        window.plugins.OneSignal.postNotification({
+                included_segments: ["All"],
+                headings: {
+                    en: {"en": "Someone took a picture!"}
+                },
+                contents: {
+                    en: {"en": "You should also take a picture"}
+                }
+            },
+            function(successResponse) {
+                console.log("Notification Post Success:", successResponse);
+            },
+            function (failedResponse) {
+                console.log("Notification Post Failed: ", failedResponse);
+                alert("Notification Post Failed:\n" + JSON.stringify(failedResponse));
+            }
+        );
 
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
