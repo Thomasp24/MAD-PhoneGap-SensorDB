@@ -31,28 +31,28 @@ function onDeviceReady() {
         .handleNotificationOpened(notificationOpenedCallback)
         .endInit();
 
-    FingerprintAuth.isAvailable(function(result) {
-        if (result.isAvailable) {
-            if(result.hasEnrolledFingerprints){
-                FingerprintAuth.show({
-                    clientId: app.client_id,
-                    clientSecret: app.client_secret
-                }, function (result) {
-                    if (result.withFingerprint) {
-                        alert("Successfully authenticated using a fingerprint");
-                    } else if (result.withPassword) {
-                        alert("Authenticated with backup password");
-                    }
-                }, function(error) {
-                    console.log(error); // "Fingerprint authentication not available"
-                });
-            }else{
-                alert("Fingerprint auth available, but no fingerprint registered on the device");
-            }
-        }
-    }, function(message) {
-        alert("Cannot detect fingerprint device : "+ message);
-    });
+    // FingerprintAuth.isAvailable(function(result) {
+    //     if (result.isAvailable) {
+    //         if(result.hasEnrolledFingerprints){
+    //             FingerprintAuth.show({
+    //                 clientId: app.client_id,
+    //                 clientSecret: app.client_secret
+    //             }, function (result) {
+    //                 if (result.withFingerprint) {
+    //                     alert("Successfully authenticated using a fingerprint");
+    //                 } else if (result.withPassword) {
+    //                     alert("Authenticated with backup password");
+    //                 }
+    //             }, function(error) {
+    //                 console.log(error); // "Fingerprint authentication not available"
+    //             });
+    //         }else{
+    //             alert("Fingerprint auth available, but no fingerprint registered on the device");
+    //         }
+    //     }
+    // }, function(message) {
+    //     alert("Cannot detect fingerprint device : "+ message);
+    // });
     console.log(navigator.camera);
     //openCamera(null);
 }
@@ -81,23 +81,25 @@ function openCamera(selection) {
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
 
         displayImage(imageUri);
-        window.plugins.OneSignal.postNotification({
-                included_segments: ["All"],
-                headings: {
-                    en: {"en": "Someone took a picture!"}
+        window.plugins.OneSignal.getIds(function(ids) {
+            window.plugins.OneSignal.postNotification({
+                    headings: {
+                        "en": "Someone took a picture!"
+                    },
+                    contents: {
+                        "en": "You should also take a picture"
+                    },
+                    include_player_ids: [ids.userId]
                 },
-                contents: {
-                    en: {"en": "You should also take a picture"}
+                function (successResponse) {
+                    console.log("Notification Post Success:", successResponse);
+                },
+                function (failedResponse) {
+                    console.log("Notification Post Failed: ", failedResponse);
+                    alert("Notification Post Failed:\n" + JSON.stringify(failedResponse));
                 }
-            },
-            function(successResponse) {
-                console.log("Notification Post Success:", successResponse);
-            },
-            function (failedResponse) {
-                console.log("Notification Post Failed: ", failedResponse);
-                alert("Notification Post Failed:\n" + JSON.stringify(failedResponse));
-            }
-        );
+            );
+        });
 
     }, function cameraError(error) {
         console.debug("Unable to obtain picture: " + error, "app");
