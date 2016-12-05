@@ -22,37 +22,58 @@ var app = {
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
+    console.log('Device Ready Called!!');
+
+    console.log('About to check fingerprint!');
+    // if IOS
+    if(!!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)){
+        console.log('Platform is iOs!');
+        window.plugins.touchid.isAvailable(function() {
+            window.plugins.touchid.verifyFingerprint("Scan your fingerprint please", function(msg){
+                console.log("Finger scanned correctly: " + msg);
+            }, function(msg){
+                console.log('Something is wrong!!!!! : ' + msg);
+            });
+        }, function(msg) {
+            console.log('Not available!');
+        });
+        // If Android
+    }else if(navigator.userAgent.toLowerCase().indexOf("android") > -1){
+        console.log('Platform is Android...?');
+        FingerprintAuth.isAvailable(function(result) {
+            if (result.isAvailable) {
+                if(result.hasEnrolledFingerprints){
+                    FingerprintAuth.show({
+                        clientId: app.client_id,
+                        clientSecret: app.client_secret
+                    }, function (result) {
+                        if (result.withFingerprint) {
+                            console.log("Successfully authenticated using a fingerprint");
+                        } else if (result.withPassword) {
+                            console.log("Authenticated with backup password");
+                        }
+                    }, function(error) {
+                        console.log(error); // "Fingerprint authentication not available"
+                    });
+                }else{
+                    console.log("Fingerprint auth available, but no fingerprint registered on the device");
+                }
+            }
+        }, function(message) {
+            alert("Cannot detect fingerprint device : "+ message);
+        });
+        // If other OS
+    }else{
+        console.log('Doet sowieso niet mee...');
+    }
     var notificationOpenedCallback = function(jsonData) {
         console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
     };
-
+    console.log('OneSignal plugin');
     window.plugins.OneSignal
         .startInit("36c8b13a-afda-4b4a-8a29-eb7ebdf2152e", "665510758144")
         .handleNotificationOpened(notificationOpenedCallback)
         .endInit();
-
-    FingerprintAuth.isAvailable(function(result) {
-        if (result.isAvailable) {
-            if(result.hasEnrolledFingerprints){
-                FingerprintAuth.show({
-                    clientId: app.client_id,
-                    clientSecret: app.client_secret
-                }, function (result) {
-                    if (result.withFingerprint) {
-                        alert("Successfully authenticated using a fingerprint");
-                    } else if (result.withPassword) {
-                        alert("Authenticated with backup password");
-                    }
-                }, function(error) {
-                    console.log(error); // "Fingerprint authentication not available"
-                });
-            }else{
-                alert("Fingerprint auth available, but no fingerprint registered on the device");
-            }
-        }
-    }, function(message) {
-        alert("Cannot detect fingerprint device : "+ message);
-    });
     console.log(navigator.camera);
     //openCamera(null);
 }
