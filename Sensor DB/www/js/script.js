@@ -1,6 +1,9 @@
 /**
  * Created by thomaspeters on 14-11-16.
  */
+
+var db = null;
+
 var app = {
 
     client_id: "id01",
@@ -22,6 +25,15 @@ var app = {
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
+    db = window.sqlitePlugin.openDatabase({name: 'sensor.db', location: 'default'});
+    db.transaction(function(tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS Pictures (picture_location, picture_time)');
+    }, function(error) {
+        alert('Transaction ERROR: ' + error.message);
+    }, function() {
+        console.log('Populated database OK');
+    });
+
     var notificationOpenedCallback = function(jsonData) {
         console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
     };
@@ -53,8 +65,6 @@ function onDeviceReady() {
     // }, function(message) {
     //     alert("Cannot detect fingerprint device : "+ message);
     // });
-    console.log(navigator.camera);
-    //openCamera(null);
 }
 
 function setOptions(srcType) {
@@ -79,8 +89,18 @@ function openCamera(selection) {
     //var func = createNewFileEntry;
 
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
+        $(".body").click();
 
         displayImage(imageUri);
+
+        db.transaction(function(tx) {
+            tx.executeSql('INSERT INTO Pictures VALUES (?,?)', [imageUri, new Date()]);
+        }, function(error) {
+            alert('Transaction ERROR: ' + error.message);
+        }, function() {
+            console.log('Populated database OK');
+        });
+
         window.plugins.OneSignal.getIds(function(ids) {
             window.plugins.OneSignal.postNotification({
                     headings: {

@@ -1,0 +1,28 @@
+<!-- Page Header -->
+<div class="page-header header-filter bg4" data-parallax="active">
+    <div class="container">
+        <h1 class="title">Uw afbeeldingen</h1>
+        <h4>Al uw genomen afbeeldingen staan hieronder weergeven</h4>
+    </div>
+</div>
+<!-- End of Page Header -->
+
+<div class="content">
+
+    <!-- Gallery Grid -->
+    <div class="container-fluid">
+
+        <div class="card card-blog" data-ng-repeat="picture in pictures">
+            <div class="card-image">
+                <a class="swipebox" title="">
+                    <img class="img" ng-src="{{picture.picture_location}}"  alt=""/>
+                    <div class="card-title"></div>
+                </a>
+            </div>
+            <div class="content">
+                <h6 class="category text-info" data-ng-bind-html="picture.picture_time"></h6>
+            </div>
+        </div>
+
+    </div>
+</div>
