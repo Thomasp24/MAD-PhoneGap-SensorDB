@@ -28,6 +28,7 @@ function onDeviceReady() {
     // if IOS
     if(!!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)){
         console.log('Platform is iOs!');
+        alert(JSON.stringify(window.plugins));
         window.plugins.touchid.isAvailable(function() {
             window.plugins.touchid.verifyFingerprint("Scan your fingerprint please", function(msg){
                 console.log("Finger scanned correctly: " + msg);

@@ -20,6 +20,10 @@
     <plugin name="cordova-plugin-gyroscope" spec="0.1.4" source="npm" />
     <plugin name="cordova-plugin-android-fingerprint-auth" spec="0.3.4" />
 
+    <feature name="TouchID">
+        <param name="ios-package" value="TouchID" />
+    </feature>
+
     <!-- PREFERENCES -->
     <preference name="phonegap-version" value="cli-5.4.1" />
     <preference name="android-build-tool" value="gradle" />
