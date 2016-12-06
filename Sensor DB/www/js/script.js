@@ -25,7 +25,7 @@ var app = {
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-<<<<<<< HEAD
+
     db = window.sqlitePlugin.openDatabase({name: 'sensor.db', location: 'default'});
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS Pictures (picture_location, picture_time)');
@@ -35,7 +35,6 @@ function onDeviceReady() {
         console.log('Populated database OK');
     });
 
-=======
     console.log('Device Ready Called!!');
 
     console.log('About to check fingerprint!');
@@ -81,7 +80,7 @@ function onDeviceReady() {
     }else{
         console.log('Doet sowieso niet mee...');
     }
->>>>>>> master
+
     var notificationOpenedCallback = function(jsonData) {
         console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
     };
@@ -90,7 +89,6 @@ function onDeviceReady() {
         .startInit("36c8b13a-afda-4b4a-8a29-eb7ebdf2152e", "665510758144")
         .handleNotificationOpened(notificationOpenedCallback)
         .endInit();
-<<<<<<< HEAD
 
     // FingerprintAuth.isAvailable(function(result) {
     //     if (result.isAvailable) {
@@ -153,10 +151,9 @@ function onDeviceReady() {
     function errorCallback(error) {
         alert(error); // "Fingerprint authentication not available"
     }
-=======
+
     console.log(navigator.camera);
     //openCamera(null);
->>>>>>> master
 }
 
 function setOptions(srcType) {
