@@ -19,12 +19,13 @@
     <plugin name="cordova-plugin-media-capture" spec="~1.4.0" />
     <plugin name="cordova-plugin-gyroscope" spec="0.1.4" source="npm" />
     <plugin name="cordova-plugin-android-fingerprint-auth" spec="0.3.4" />
+    <plugin name="cordova-plugin-battery-status" spec="~1.2.0" />
 
     <feature name="TouchID">
         <param name="ios-package" value="TouchID" />
     </feature>
 
     <!-- PREFERENCES -->
-    <preference name="phonegap-version" value="cli-5.4.1" />
+    <preference name="phonegap-version" value="cli-6.3.0" />
     <preference name="android-build-tool" value="gradle" />
 </widget>
