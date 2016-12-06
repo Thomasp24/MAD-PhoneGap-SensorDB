@@ -24,6 +24,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     console.log('Device Ready Called!!');
 
+
+    // ------------------------------------------------------------ Fingerprint ------------------------------------------------
     console.log('About to check fingerprint!');
     // if IOS
     if(!!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)){
@@ -67,9 +69,12 @@ function onDeviceReady() {
     }else{
         console.log('Doet sowieso niet mee...');
     }
+
+    // ------------------------------------------------------- Notifications -----------------------------------------------------------------
     var notificationOpenedCallback = function(jsonData) {
         console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
     };
+
     console.log('OneSignal plugin');
     window.plugins.OneSignal
         .startInit("36c8b13a-afda-4b4a-8a29-eb7ebdf2152e", "665510758144")
@@ -77,6 +82,17 @@ function onDeviceReady() {
         .endInit();
     console.log(navigator.camera);
     //openCamera(null);
+
+
+    // ------------------------------------------ Contacts --------------------------------------------------
+    //fetching the contacts can't be done after the device ready method.
+
+    var fields = [navigator.contacts.fieldType.id, navigator.contacts.fieldType.displayName];
+
+    navigator.contacts.find(fields ,function(contacts){
+        console.log("Found: " + contacts.length + " Contacts");
+    }, null, null);
+
 }
 
 function setOptions(srcType) {

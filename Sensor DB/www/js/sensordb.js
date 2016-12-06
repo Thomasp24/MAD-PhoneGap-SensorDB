@@ -19,6 +19,10 @@ var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter"]);
             .when("/fingerprint", {
                 templateUrl: "views/fingerprint.html"
             })
+            .when("/contacts", {
+                templateUrl: "views/contacts.html",
+                controller: "contacts"
+            })
             .otherwise({
                 redirectTo: "/"
             });

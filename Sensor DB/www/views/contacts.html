@@ -1,0 +1,18 @@
+<div class="container fullscreen valign-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card text-center">
+                    <div class="content">
+                        <h1 class="card-title">Contacts</h1>
+                        <p class="card-description">List of your contacts</p>
+                        <!-- list all the contacts. -->
+                        <div ng-repeat="contact in contacts">
+                            <p>{{contact.displayName}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
