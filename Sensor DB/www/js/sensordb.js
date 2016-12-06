@@ -2,7 +2,8 @@
  * Created by thomaspeters on 14-11-16.
  */
 
-var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter", "battery"]);
+
+var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter", "database”, "battery"]);
     app.config(function($routeProvider) {
         $routeProvider
             .when("/", {
@@ -11,6 +12,10 @@ var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter", "ba
             .when("/overview", {
                 templateUrl: "views/overview.html",
                 controller: "overview"
+            })
+            .when("/database", {
+                templateUrl: "views/database.html",
+                controller: "db"
             })
             .when("/decibelmeter", {
                 templateUrl: "views/decibelmeter.html",
