@@ -2,7 +2,7 @@
  * Created by thomaspeters on 14-11-16.
  */
 
-var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter"]);
+var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter", "database"]);
     app.config(function($routeProvider) {
         $routeProvider
             .when("/", {
@@ -11,6 +11,10 @@ var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter"]);
             .when("/overview", {
                 templateUrl: "views/overview.html",
                 controller: "overview"
+            })
+            .when("/database", {
+                templateUrl: "views/database.html",
+                controller: "db"
             })
             .when("/decibelmeter", {
                 templateUrl: "views/decibelmeter.html",
