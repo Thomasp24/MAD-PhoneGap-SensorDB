@@ -3,7 +3,7 @@
  */
 
 
-var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter", "database”, "battery"]);
+var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter", "database", "battery"]);
     app.config(function($routeProvider) {
         $routeProvider
             .when("/", {
