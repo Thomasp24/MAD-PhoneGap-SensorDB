@@ -1,0 +1,59 @@
+<div class="page-header header-filter bg4" data-parallax="active">
+    <div class="container">
+        <h1 class="title">Overview</h1>
+        <h4>Meet the amazing team behind this project and find out more about how we work.</h4>
+    </div>
+</div>
+<!-- End of Page Header -->
+
+<div class="content">
+
+
+
+    <!-- Gallery Grid -->
+    <div class="container-fluid">
+        <div class="card card-blog">
+            <div class="card-image">
+                <img src="img/compas.png" id="compasImg"/>
+                <div class="card-title">
+                    Compas
+                </div>
+            </div>
+            <div class="content">
+                <h6 class="category text-info">Compas direction</h6>
+                <p class="card-description">
+                    {{heading}}
+                </p>
+            </div>
+        </div>
+
+        <div class="card card-blog">
+            <div class="card-image">
+               <img src="img/phonegap-build.png" id="orientationImg"/>
+               <div class="card-title">
+                   {{orientation.availability}}
+                </div>
+            </div>
+            <div class="content">
+                <h6 class="category text-info">Device Orientation</h6>
+                <p class="card-description">
+                <table>
+                    <tr>
+                        <td>Gamma:</td>
+                        <td ng-bind="orientation.gamma"></td>
+                    </tr>
+                    <tr>
+                        <td>Beta:</td>
+                        <td ng-bind="orientation.beta"></td>
+                    </tr>
+                    <tr>
+                        <td>Alpha:</td>
+                        <td ng-bind="orientation.alpha"></td>
+                    </tr>
+                </table>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
