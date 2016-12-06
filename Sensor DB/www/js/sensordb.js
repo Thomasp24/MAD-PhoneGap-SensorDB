@@ -2,7 +2,8 @@
  * Created by thomaspeters on 14-11-16.
  */
 
-var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter", "database"]);
+
+var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter", "database”, "battery"]);
     app.config(function($routeProvider) {
         $routeProvider
             .when("/", {
@@ -22,6 +23,10 @@ var app = angular.module("sensordb", ["ngRoute", "overview", "decibelMeter", "da
             })
             .when("/fingerprint", {
                 templateUrl: "views/fingerprint.html"
+            })
+            .when("/battery", {
+                templateUrl: "views/battery.html",
+                controller: "battery"
             })
             .otherwise({
                 redirectTo: "/"
