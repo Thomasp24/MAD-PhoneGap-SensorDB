@@ -65,6 +65,45 @@ function onDeviceReady() {
     // }, function(message) {
     //     alert("Cannot detect fingerprint device : "+ message);
     // });
+
+    FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
+
+    /**
+     * @return {
+ *      isAvailable:boolean,
+ *      isHardwareDetected:boolean,
+ *      hasEnrolledFingerprints:boolean
+ *   }
+     */
+    function isAvailableSuccess(result) {
+        alert("FingerprintAuth available: " + JSON.stringify(result));
+        if (result.isAvailable) {
+            FingerprintAuth.show({
+                clientId: "SensorDB",
+                clientSecret: "SuperSecretSensorDBKey"
+            }, successCallback, errorCallback);
+        }
+    }
+
+    function isAvailableError(message) {
+        alert("isAvailableError(): " + message);
+    }
+
+    /**
+     * @return {withFingerprint:base64EncodedString, withPassword:boolean}
+     */
+    function successCallback(result) {
+        alert("successCallback(): " + JSON.stringify(result));
+        if (result.withFingerprint) {
+            alert("Successfully authenticated using a fingerprint");
+        } else if (result.withPassword) {
+            alert("Authenticated with backup password");
+        }
+    }
+
+    function errorCallback(error) {
+        alert(error); // "Fingerprint authentication not available"
+    }
 }
 
 function setOptions(srcType) {
